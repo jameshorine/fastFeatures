@@ -1,3 +1,5 @@
+.data.table.aware = TRUE
+
 #'L1 Lasso Sellection From Dense Predictor Space.
 #'
 #' @param df \code{data.table}-type data matrix
@@ -11,6 +13,7 @@
 #' @return data.table object of Conditional Variable Inclusion Probability
 #'
 #' @export
+
 lassoSelector <- function(df, target_column, feature_columns, column_proportion, n_iterations, l1_lambda, glmnet_family){
 
   num_cores <- parallel::detectCores()
@@ -30,14 +33,13 @@ lassoSelector <- function(df, target_column, feature_columns, column_proportion,
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)
 
-                                          temp_coefs_table <- data.table::data.table(as.data.frame(as.matrix(coef(temp_mdl))), keep.rownames = TRUE)
-                                          return(temp_coefs_table)
+                                          return(data.table::data.table(as.data.frame(as.matrix(coef(temp_mdl))), keep.rownames = TRUE))
                                         },
                                         mc.cores = num_cores
   )
 
-  res <- data.table:::merge.data.table(x = data.table::rbindlist(temp_results)[rn != "(Intercept)"][, list(count = .N), by = rn],
-                                       y = data.table::rbindlist(temp_results)[rn != "(Intercept)"][s0 > 0, list(countInc = .N), by = rn],
+  res <- data.table:::merge.data.table(x = data.table::rbindlist(temp_results)[, list(count = .N), by = rn],
+                                       y = data.table::rbindlist(temp_results)[s0 > 0, list(countInc = .N), by = rn],
                                        by = "rn")[ , list("Variable" = rn, "Conditional Variable Inclusion Probability" = countInc / count)]
 
   return(res)

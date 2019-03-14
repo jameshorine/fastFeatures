@@ -8,5 +8,6 @@ Description: R Package for Fast Feature Selection - (i.e. For When You Have To E
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Imports: data.table, pbmcapply
+Depends: data.table, pbmcapply, glmnet, parallel
+Imports: glmnet
 RoxygenNote: 6.1.1
