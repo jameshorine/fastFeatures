@@ -2,7 +2,7 @@
 % Please edit documentation in R/lassoSelector.R
 \name{lassoSelector}
 \alias{lassoSelector}
-\title{lassoSelector}
+\title{L1 Lasso Sellection From Dense Predictor Space.}
 \usage{
 lassoSelector(df, target_column, feature_columns, column_proportion,
   n_iterations, l1_lambda, glmnet_family)
@@ -26,5 +26,5 @@ lassoSelector(df, target_column, feature_columns, column_proportion,
 data.table object of Conditional Variable Inclusion Probability
 }
 \description{
-lassoSelector
+L1 Lasso Sellection From Dense Predictor Space.
 }

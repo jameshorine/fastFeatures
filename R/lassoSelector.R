@@ -1,12 +1,12 @@
-#'
+#'L1 Lasso Sellection From Dense Predictor Space.
 #'
 #' @param df \code{data.table}-type data matrix
-#' @param target_column
-#' @param feature_columns
-#' @param column_proportion
-#' @param n_iterations
-#' @param l1_lambda
-#' @param glmnet_family
+#' @param target_column Character string identifying the target column
+#' @param feature_columns Character vector identifying the feature columns to investigate
+#' @param column_proportion Numeric on the interval (0,1), this is the percentage of columns randomly sampeled
+#' @param n_iterations The number of bootstrap replications
+#' @param l1_lambda The LASSO L1 penalty parameter
+#' @param glmnet_family Character string, see glmnet for more information
 #'
 #' @return data.table object of Conditional Variable Inclusion Probability
 #'
