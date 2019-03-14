@@ -1,8 +1,15 @@
 #'
 #'
+#' @param df \code{data.table}-type data matrix
+#' @param target_column
+#' @param feature_columns
+#' @param column_proportion
+#' @param n_iterations
+#' @param l1_lambda
+#' @param glmnet_family
 #'
+#' @return data.table object of Conditional Variable Inclusion Probability
 #'
-
 #' @export
 lassoSelector <- function(df, target_column, feature_columns, column_proportion, n_iterations, l1_lambda, glmnet_family){
 
