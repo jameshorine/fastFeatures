@@ -23,8 +23,19 @@ lassoSelector(df, target_column, feature_columns, column_proportion,
 \item{glmnet_family}{Character string, see glmnet for more information}
 }
 \value{
-data.table object of Conditional Variable Inclusion Probability
+\code{data.table}-type object of the (Conditional) Variable Inclusion Probability
 }
 \description{
 L1 Lasso Sellection From Dense Predictor Space.
+}
+\references{
+\itemize{
+\item Bunea, Florentina et al. “Penalized least squares regression methods and applications to neuroimaging” NeuroImage vol. 55,4 (2010): 1519-27.
+\item Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression for Variable Selection with Neuroimaging Data” Frontiers in neuroscience vol. 10 344. 28 Jul. 2016, doi:10.3389/fnins.2016.00344
+\item Santosa, Fadil; Symes, William W. (1986). "Linear inversion of band-limited reflection seismograms". SIAM Journal on Scientific and Statistical Computing. SIAM. 7 (4): 1307–1330. doi:10.1137/0907087
+\item Tibshirani, Robert (1996). "Regression Shrinkage and Selection via the lasso". Journal of the Royal Statistical Society. Series B (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
+}
+}
+\author{
+James Patrick Horine
 }

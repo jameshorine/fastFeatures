@@ -1,6 +1,6 @@
 .data.table.aware = TRUE
 
-#'L1 Lasso Sellection From Dense Predictor Space.
+#'L1 Lasso Selection From Dense Predictor Space.
 #'
 #' @param df \code{data.table}-type data matrix
 #' @param target_column Character string identifying the target column
@@ -10,7 +10,20 @@
 #' @param l1_lambda The LASSO L1 penalty parameter
 #' @param glmnet_family Character string, see glmnet for more information
 #'
-#' @return data.table object of Conditional Variable Inclusion Probability
+#' @author James Patrick Horine
+#'
+#' @return \code{data.table}-type object of the (Conditional) Variable Inclusion Probability
+#'
+#' @references
+#' \itemize{
+#' \item Bunea, Florentina et al. “Penalized least squares regression methods and applications to neuroimaging” NeuroImage vol. 55,4 (2010): 1519-27.
+#' \item Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression for Variable Selection with Neuroimaging Data” Frontiers in neuroscience vol. 10 344. 28 Jul. 2016, doi:10.3389/fnins.2016.00344
+#' \item Santosa, Fadil; Symes, William W. (1986). "Linear inversion of band-limited reflection seismograms". SIAM Journal on Scientific and Statistical Computing. SIAM. 7 (4): 1307–1330. doi:10.1137/0907087
+#' \item Tibshirani, Robert (1996). "Regression Shrinkage and Selection via the lasso". Journal of the Royal Statistical Society. Series B (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
+#' \item Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1), 1-22. URL http://www.jstatsoft.org/v33/i01/.
+#' }
+#'
+#' @details \code{lassoSelector} is a parallelized Bootstrap LASSO built on the \code{glmnet} package from Hastie et. al. The underlying glmnet framework does not appear to be compatiable with \code{data.table}, as such, \code{data.table}-
 #'
 #' @export
 

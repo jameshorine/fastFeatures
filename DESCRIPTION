@@ -11,3 +11,5 @@ LazyData: true
 Depends: data.table, pbmcapply, glmnet, parallel
 Imports: glmnet
 RoxygenNote: 6.1.1
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
