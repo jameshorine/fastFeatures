@@ -21,6 +21,7 @@
 #' \item Santosa, Fadil; Symes, William W. (1986). "Linear inversion of band-limited reflection seismograms". SIAM Journal on Scientific and Statistical Computing. SIAM. 7 (4): 1307–1330. doi:10.1137/0907087
 #' \item Tibshirani, Robert (1996). "Regression Shrinkage and Selection via the lasso". Journal of the Royal Statistical Society. Series B (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
 #' \item Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1), 1-22. URL http://www.jstatsoft.org/v33/i01/.
+#' \item Knockoff Filtering as presented in Data Science and Predictive Analytics (UMich HS650). http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering
 #' }
 #'
 #' @details \code{lassoSelector} is a parallelized Bootstrap LASSO built on the \code{glmnet} package from Hastie et. al. The underlying glmnet framework does not appear to be compatiable with \code{data.table}, as such, \code{data.table}-
