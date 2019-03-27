@@ -2,10 +2,10 @@
 % Please edit documentation in R/lassoSelector.R
 \name{lassoSelector}
 \alias{lassoSelector}
-\title{L1 Lasso Sellection From Dense Predictor Space.}
+\title{L1 Lasso Selection From Dense Predictor Space.}
 \usage{
 lassoSelector(df, target_column, feature_columns, column_proportion,
-  n_iterations, l1_lambda, glmnet_family)
+  record_proportion = 1, n_iterations, l1_lambda, glmnet_family)
 }
 \arguments{
 \item{df}{\code{data.table}-type data matrix}
@@ -14,7 +14,9 @@ lassoSelector(df, target_column, feature_columns, column_proportion,
 
 \item{feature_columns}{Character vector identifying the feature columns to investigate}
 
-\item{column_proportion}{Numeric on the interval (0,1), this is the percentage of columns randomly sampeled}
+\item{column_proportion}{Numeric on the interval (0,1), this is the percentage of columns randomly sampeled without replacement.}
+
+\item{record_proportion}{Numeric on the interval (0,1], default is 1. This is the percentage of records to random select for boot strap sampling, with replacement.}
 
 \item{n_iterations}{The number of bootstrap replications}
 
@@ -26,7 +28,10 @@ lassoSelector(df, target_column, feature_columns, column_proportion,
 \code{data.table}-type object of the (Conditional) Variable Inclusion Probability
 }
 \description{
-L1 Lasso Sellection From Dense Predictor Space.
+L1 Lasso Selection From Dense Predictor Space.
+}
+\details{
+\code{lassoSelector} is a parallelized Bootstrap LASSO built on the \code{glmnet} package from Hastie et. al. The underlying glmnet framework does not appear to be compatiable with \code{data.table}, as such, \code{data.table}-type inputs will be down-cast to \code{base::data.matrix}-types when needed.
 }
 \references{
 \itemize{
@@ -34,6 +39,8 @@ L1 Lasso Sellection From Dense Predictor Space.
 \item Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression for Variable Selection with Neuroimaging Data” Frontiers in neuroscience vol. 10 344. 28 Jul. 2016, doi:10.3389/fnins.2016.00344
 \item Santosa, Fadil; Symes, William W. (1986). "Linear inversion of band-limited reflection seismograms". SIAM Journal on Scientific and Statistical Computing. SIAM. 7 (4): 1307–1330. doi:10.1137/0907087
 \item Tibshirani, Robert (1996). "Regression Shrinkage and Selection via the lasso". Journal of the Royal Statistical Society. Series B (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
+\item Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1), 1-22. URL http://www.jstatsoft.org/v33/i01/.
+\item Knockoff Filtering as presented in Data Science and Predictive Analytics (UMich HS650). http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering
 }
 }
 \author{

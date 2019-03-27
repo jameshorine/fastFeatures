@@ -1,7 +1,7 @@
 Package: fastFeatures
 Type: Package
 Title: R Package for Fast Feature Selection
-Version: 1.0.0
+Version: 0.1.0
 Author: James Patrick Horine
 Maintainer: James Patrick Horine <james@bigbadbayesian.com>
 Description: R Package for Fast Feature Selection - (i.e. For When You Have To Explain Things To Your Boss)
