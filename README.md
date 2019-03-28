@@ -3,18 +3,18 @@
 
 # `fastFeatures`
 
-`fastFeatures` is built from the ground up with one goal in mind:
-Quickly slice and dice through feature spaces too large to quickly
-manually examine so that you can build a predictive model that is easier
-to explain to explain to non-technical stakeholders. `fastFeatures`
-provides an easy-to-use interface to fast variable selection methods.
-The implemented feature selection functions are:
+`fastFeatures` is an `R` package built from the ground up with one goal
+in mind: Quickly slice and dice through feature spaces too large to
+quickly manually examine so that you can build a predictive model that
+is easier to explain to explain to non-technical stakeholders.
+`fastFeatures` provides an easy-to-use interface to fast variable
+selection methods. The implemented feature selection functions are:
 
 1.  `lassoSelector`. lassoSelector is built from the notion of
     Conditional Variable Inclusion Probability as introduced by Bunea
     et. al \[1\].
 
-2.  comming soon
+2.  coming soon
 
 ## Installation
 
@@ -37,13 +37,23 @@ devtools::install_github("jameshorine/fastFeatures")
 
 ## Useage
 
-The general recipie for using this package is:
+The general recipe for using this package is:
 
 1.  Prepare data appropriately.
-2.  Assign your data, target, and feature variables to convinent objects
+2.  Assign your data, target, and feature variables to convenient
+    objects
       - data, target, features, are some easy to remember choices
-3.  Run your prefered method.
+3.  Run your preferred method.
 4.  Interpret results.
+
+## Inspiration
+
+The data used to build this package may be found at
+<https://www.kaggle.com/c/santander-customer-transaction-prediction/data>.
+This is a good first pass data set as there are (just) too many
+predictors to reasonably assess manually, and there are enough records
+(N ~ 200000) that meaningful computational time will be spent searching
+for any true (and unknown to us) signal.
 
 ## Refernences
 
