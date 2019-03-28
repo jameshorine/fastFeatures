@@ -10,11 +10,19 @@ is easier to explain to explain to non-technical stakeholders.
 `fastFeatures` provides an easy-to-use interface to fast variable
 selection methods. The implemented feature selection functions are:
 
-1.  `lassoSelector`. lassoSelector is built from the notion of
-    Conditional Variable Inclusion Probability as introduced by Bunea
-    et. al \[1\].
-
-2.  coming soon
+1.  `lassoSelector` is built from the notion of Conditional Variable
+    Inclusion Probability as introduced by Bunea et. al \[1\]. Built on
+    `glmnet` and can accept any regression of the families:
+      - gaussian
+      - binomial
+      - poisson
+      - multinomial
+      - cox
+      - mgaussian
+2.  `rfSelector` is a `ranger`-powered bootstrapped random forest. The
+    same methodology applies with the twist that we are only considering
+    variables whoes conditional importance contribution is more than
+    1/(number of features in bootstrapped model at replication i).
 
 ## Installation
 
