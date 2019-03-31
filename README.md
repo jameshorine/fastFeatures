@@ -10,19 +10,17 @@ is easier to explain to explain to non-technical stakeholders.
 `fastFeatures` provides an easy-to-use interface to fast variable
 selection methods. The implemented feature selection functions are:
 
-1.  `lassoSelector` is built from the notion of Conditional Variable
-    Inclusion Probability as introduced by Bunea et. al \[1\]. Built on
-    `glmnet` and can accept any regression of the families:
+1.  `cVIP` is built from the notion of (Conditional) Variable Inclusion
+    Probability as introduced by Bunea et. al \[1\]. Built on `glmnet`
+    and can accept any regression of the families:
       - gaussian
       - binomial
       - poisson
       - multinomial
       - cox
       - mgaussian
-2.  `rfSelector` is a `ranger`-powered bootstrapped random forest. The
-    same methodology applies with the twist that we are only considering
-    variables whoes conditional importance contribution is more than
-    1/(number of features in bootstrapped model at replication i).
+2.  `rf_cVIP` is a `ranger`-powered bootstrapped random forest. The same
+    methodology applies with a twist that I have not yet figured out.
 
 ## Installation
 
@@ -85,3 +83,6 @@ for any true (and unknown to us) signal.
 6.  Knockoff Filtering as presented in Data Science and Predictive
     Analytics (UMich HS650).
     <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering>
+7.  Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650
+    Notes.
+    <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.R>

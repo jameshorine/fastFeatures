@@ -26,7 +26,7 @@
 #' \item Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650 Notes. http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.R
 #' }
 #'
-#' @details \code{lassoSelector} is a parallelized Bootstrap LASSO built on the \code{glmnet} package from Hastie et. al. The underlying glmnet framework does not appear to be compatiable with \code{data.table}, as such, \code{data.table}-type inputs will be down-cast to \code{base::data.matrix}-types when needed.
+#' @details \code{cVIP} is a parallelized Bootstrap LASSO built on the \code{glmnet} package from Hastie et. al. The underlying glmnet framework does not appear to be compatiable with \code{data.table}, as such, \code{data.table}-type inputs will be down-cast to \code{base::data.matrix}-types when needed.
 #'
 #' @export
 
