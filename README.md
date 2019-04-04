@@ -13,14 +13,15 @@ selection methods. The implemented feature selection functions are:
 1.  `cVIP` is built from the notion of (Conditional) Variable Inclusion
     Probability as introduced by Bunea et. al \[1\]. Built on `glmnet`
     and can accept any regression of the families:
-      - gaussian
-      - binomial
-      - poisson
-      - multinomial
-      - cox
-      - mgaussian
-2.  `rf_cVIP` is a `ranger`-powered bootstrapped random forest. The same
-    methodology applies with a twist that I have not yet figured out.
+      - `gaussian`
+      - `binomial`
+      - `poisson`
+      - `multinomial`
+      - `cox`
+      - `mgaussian`
+2.  `rf_cVIP` (should be) a `ranger`-powered bootstrapped random forest.
+    The same methodology applies with a twist that I have not yet
+    figured out.
 
 ## Installation
 
@@ -52,14 +53,15 @@ The general recipe for using this package is:
 3.  Run your preferred method.
 4.  Interpret results.
 
-## Inspiration
+## TODO:
 
-The data used to build this package may be found at
-<https://www.kaggle.com/c/santander-customer-transaction-prediction/data>.
-This is a good first pass data set as there are (just) too many
-predictors to reasonably assess manually, and there are enough records
-(N ~ 200000) that meaningful computational time will be spent searching
-for any true (and unknown to us) signal.
+1.  finish `rf_cVIP`
+2.  test against more large data sets of type
+      - N-large, p-large
+      - p\>\>N
+      - N-large, p-highly correlated
+3.  write vignette
+4.  unit test (grumble, made last for a reason)
 
 ## Refernences
 
