@@ -53,6 +53,36 @@ The general recipe for using this package is:
 3.  Run your preferred method.
 4.  Interpret results.
 
+## Notes
+
+1.  This is a temporary suggestion of use:
+
+<!-- end list -->
+
+``` r
+fastFeatures::cVIP(df = train,
+                   target_column = target_variable,
+                   feature_columns = feature_variables,
+                   column_proportion = 0.25,
+                   record_proportion = 0.50,
+                   n_iterations = 1000,
+                   l1_lambda = 0.0099,
+                   glmnet_family = "binomial")
+```
+
+2.  This is not built for the windows platform. I am making use of
+    `pbmcapply::pbmclapply()` because speed is as important as user
+    feedback; It is simply nice to see progress indicators for a long
+    calculation.
+
+3.  The “mixing” properties of this algorithm have not been explored at
+    this time. Users should use their judgement in parameter settings.
+    If you have many predictors, you may not adequately explore the
+    (conditional) Variable Inclusion Probability distribution.
+
+4.  Contrary to \[1\], \[2\] (below), `l1_lambda` is NOT optimized at
+    every iteration of the algorithm.
+
 ## TODO:
 
 1.  finish `rf_cVIP`
@@ -62,6 +92,10 @@ The general recipe for using this package is:
       - N-large, p-highly correlated
 3.  write vignette
 4.  unit test (grumble, made last for a reason)
+
+## Feedback
+
+Please direct any feedback to <jamespatrickhorine@gmail.com>\!
 
 ## Refernences
 
