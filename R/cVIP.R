@@ -17,6 +17,7 @@
 #'
 #' @references
 #' \itemize{
+#' \item Bach,Francis. (2008) "Bolasso: model consistent Lasso estimation through the bootstrap". URL https://arxiv.org/abs/0804.1302
 #' \item Bunea, Florentina et al. “Penalized least squares regression methods and applications to neuroimaging” NeuroImage vol. 55,4 (2010): 1519-27.
 #' \item Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression for Variable Selection with Neuroimaging Data” Frontiers in neuroscience vol. 10 344. 28 Jul. 2016, doi:10.3389/fnins.2016.00344
 #' \item Santosa, Fadil; Symes, William W. (1986). "Linear inversion of band-limited reflection seismograms". SIAM Journal on Scientific and Statistical Computing. SIAM. 7 (4): 1307–1330. doi:10.1137/0907087

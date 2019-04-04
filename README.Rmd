@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 `fastFeatures` is an `R` package built from the ground up with one goal in mind: Quickly slice and dice through feature spaces too large to quickly manually examine so that you can build a predictive model that is easier to explain to explain to non-technical stakeholders. `fastFeatures` provides an easy-to-use interface to fast variable selection methods. The implemented feature selection functions are:
 
-1. `lassoSelector` is built from the notion of Conditional Variable Inclusion Probability as introduced by Bunea et. al [1]. Built on `glmnet` and can accept any regression of the families:
+1. `cVIP` is built from the notion of (Conditional) Variable Inclusion Probability as introduced by Bunea et. al [1]. Built on `glmnet` and can accept any regression of the families:
     - gaussian
     - binomial
     - poisson
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
     - cox
     - mgaussian 
 
-2. `rfSelector` is a `ranger`-powered bootstrapped random forest. The same methodology applies with the twist that we are only considering variables whoes conditional importance contribution is more than 1/(number of features in bootstrapped model at replication i).
+2. `rf_cVIP` is a `ranger`-powered bootstrapped random forest. The same methodology applies with a twist that I have not yet figured out. 
 
 ## Installation
 
@@ -58,12 +58,14 @@ The data used to build this package may be found at https://www.kaggle.com/c/san
 
 ## Refernences
 
+1. Bach,Francis. (2008) "Bolasso: model consistent Lasso estimation through the bootstrap". URL https://arxiv.org/abs/0804.1302
 1. Bunea, Florentina et al. “Penalized least squares regression methods and applications to neuroimaging” NeuroImage vol. 55,4 (2010): 1519-27.
 2.  Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression for Variable Selection with Neuroimaging Data” Frontiers in neuroscience vol. 10 344. 28 Jul. 2016, doi:10.3389/fnins.2016.00344
 3. Santosa, Fadil; Symes, William W. (1986). "Linear inversion of band-limited reflection seismograms". SIAM Journal on Scientific and Statistical Computing. SIAM. 7 (4): 1307–1330. doi:10.1137/0907087
 4. Tibshirani, Robert (1996). "Regression Shrinkage and Selection via the lasso". Journal of the Royal Statistical Society. Series B (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
 5. Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1), 1-22. URL http://www.jstatsoft.org/v33/i01/.
 6. Knockoff Filtering as presented in Data Science and Predictive Analytics (UMich HS650). http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering
+6. Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650 Notes. http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.
 
 
 

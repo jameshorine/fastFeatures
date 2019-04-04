@@ -63,26 +63,28 @@ for any true (and unknown to us) signal.
 
 ## Refernences
 
-1.  Bunea, Florentina et al. “Penalized least squares regression methods
+1.  Bach,Francis. (2008) “Bolasso: model consistent Lasso estimation
+    through the bootstrap”. URL <https://arxiv.org/abs/0804.1302>
+2.  Bunea, Florentina et al. “Penalized least squares regression methods
     and applications to neuroimaging” NeuroImage vol. 55,4 (2010):
     1519-27.
-2.  Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression
+3.  Abram, Samantha V et al. “Bootstrap Enhanced Penalized Regression
     for Variable Selection with Neuroimaging Data” Frontiers in
     neuroscience vol. 10 344. 28 Jul. 2016,
     <doi:10.3389/fnins.2016.00344>
-3.  Santosa, Fadil; Symes, William W. (1986). “Linear inversion of
+4.  Santosa, Fadil; Symes, William W. (1986). “Linear inversion of
     band-limited reflection seismograms”. SIAM Journal on Scientific and
     Statistical Computing. SIAM. 7 (4): 1307–1330. <doi:10.1137/0907087>
-4.  Tibshirani, Robert (1996). “Regression Shrinkage and Selection via
+5.  Tibshirani, Robert (1996). “Regression Shrinkage and Selection via
     the lasso”. Journal of the Royal Statistical Society. Series B
     (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
-5.  Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010).
+6.  Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010).
     Regularization Paths for Generalized Linear Models via Coordinate
     Descent. Journal of Statistical Software, 33(1), 1-22. URL
     <http://www.jstatsoft.org/v33/i01/>.
-6.  Knockoff Filtering as presented in Data Science and Predictive
+7.  Knockoff Filtering as presented in Data Science and Predictive
     Analytics (UMich HS650).
     <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering>
-7.  Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650
+8.  Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650
     Notes.
-    <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.R>
+    <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter>.
