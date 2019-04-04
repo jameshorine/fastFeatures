@@ -5,10 +5,10 @@
 
 `fastFeatures` is an `R` package built from the ground up with one goal
 in mind: Quickly slice and dice through feature spaces too large to
-quickly manually examine so that you can build a predictive model that
-is easier to explain to explain to non-technical stakeholders.
-`fastFeatures` provides an easy-to-use interface to fast variable
-selection methods. The implemented feature selection functions are:
+(quickly) manually examine so that you may (and shall) build a
+predictive model that is easy to explain and share. `fastFeatures`
+provides an easy-to-use interface to fast variable selection methods.
+The implemented feature selection functions are:
 
 1.  `cVIP` is built from the notion of (Conditional) Variable Inclusion
     Probability as introduced by Bunea et. al \[1\]. Built on `glmnet`
