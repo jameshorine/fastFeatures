@@ -97,7 +97,7 @@ Please direct any feedback to jamespatrickhorine@gmail.com!
 1. Tibshirani, Robert (1996). "Regression Shrinkage and Selection via the lasso". Journal of the Royal Statistical Society. Series B (methodological). Wiley. 58 (1): 267–88. JSTOR 2346178
 1. Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1), 1-22. URL http://www.jstatsoft.org/v33/i01/.
 1. Knockoff Filtering as presented in Data Science and Predictive Analytics (UMich HS650). http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering
-1. Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650 Notes. http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.
+1. Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650 Notes. http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.R
 1. Dinov, ID. (2018) Data Science and Predictive Analytics: Biomedical and Health Applications using R, Springer (ISBN 978-3-319-72346-4)
 
 

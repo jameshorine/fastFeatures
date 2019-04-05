@@ -123,6 +123,6 @@ Please direct any feedback to <jamespatrickhorine@gmail.com>\!
     <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering>
 8.  Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650
     Notes.
-    <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter>.
+    <http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.R>
 9.  Dinov, ID. (2018) Data Science and Predictive Analytics: Biomedical
     and Health Applications using R, Springer (ISBN 978-3-319-72346-4)
