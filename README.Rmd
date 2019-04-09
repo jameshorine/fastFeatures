@@ -41,6 +41,18 @@ install.packages("devtools")
 devtools::install_github("jameshorine/fastFeatures")
 ```
 
+3. (turns out I was wrong about (2), and there appears to be a bit of a community kerfuffle between Hadley (AKA The Grand Master), and the folks at `devtools`)
+
+per https://community.rstudio.com/t/vignettes-suddenly-stopped-installing/18391, try installing as: 
+
+```{r, eval=F}
+devtools::install_github("jameshorine/fastFeatures", build = TRUE, build_opts = c("--no-resave-data", "--no-manual"),force = T)
+```
+
+you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette. 
+
+
+
 # Useage
 
 #### General Recipe
