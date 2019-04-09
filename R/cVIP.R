@@ -25,6 +25,7 @@
 #' \item Jerome Friedman, Trevor Hastie, Robert Tibshirani (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1), 1-22. URL http://www.jstatsoft.org/v33/i01/.
 #' \item Knockoff Filtering as presented in Data Science and Predictive Analytics (UMich HS650). http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.html#10_knockoff_filtering
 #' \item Knockoff Filtering and Bootstrapped LASSO as presented in UMich H650 Notes. http://www.socr.umich.edu/people/dinov/courses/DSPA_notes/17_RegularizedLinModel_KnockoffFilter.R
+#' \item Dinov, ID. (2018) Data Science and Predictive Analytics: Biomedical and Health Applications using R, Springer (ISBN 978-3-319-72346-4)
 #' }
 #'
 #' @details \code{cVIP} is a parallelized Bootstrap LASSO built on the \code{glmnet} package from Hastie et. al. The underlying glmnet framework does not appear to be compatiable with \code{data.table}, as such, \code{data.table}-type inputs will be down-cast to \code{base::data.matrix}-types when needed.

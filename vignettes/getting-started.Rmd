@@ -1,0 +1,172 @@
+---
+title: "Getting Started"
+author: "James Patrick Horine"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Background 
+
+The `fastFeatures` package is designed for high-speed variable selection in a variety of settings: 
+
+1. Large N
+1. Large P
+1. ||P|| $\sim$ ||N|| 
+
+where 
+
+  - ||data-set|| = N  
+  - ||P|| = number of predictor columns
+
+Examples of these types of data situations are all around us, and bring all sorts of interesting mathematical challenges to the statistician and data scientist. Typical regression problems are of the form N >> P, where $\{P\}$ are said to be independent, so that the matrix inversion $(X^{\prime}X)^{-1}$ is "stable". To make life more interesting, N is often small enough so that the problem neatly fits into available system memory(!!!). 
+
+We find that data are rarely so well behaved. `fastFeatures` is one package that helps the analyst/scientist quickly arrive at a reduced model to generate quality "first-pass" analyses. 
+
+# The Algorithm 
+
+The `fastFeatures` package function `cVIP` reproduced a modified version of the Conditional Variable Inclusion Probability as presented in Bunea et. al. (2010). The modified algorithm: 
+
+1. [Global (pre)-Tuning] Preform cross-validation using `glmnet::cv.glmnet` to obtain reasonably "optimal" $\lambda$
+1. [Bootstrap] 
+    * Select random sub-sample of data with replacement
+    * Select random columns without replacement
+    * Fit LASSO on the random sub-sample of data with selected predictors
+1. [Summarize] Record the frequency with which selected variables are kept in the model conditioned on the provided $\lambda$
+
+
+# Interperting Results 
+
+The authors of the original method suggest:
+
+"If a predictor is selected in more than 50% of the bootstrap samples, we [may] declare it important and investigate its impact further. The bootstrap frequency associated with a certain predictor indicates to what extent the predictor is more likely to be included in the model, rather than be excluded, should we repeat the experiment a large number of times. We refer to this frequency as the variable inclusion probability (VIP). Of course, the threshold of 50% is user specified, we regard this value as a minimum requirement on investigating further a specific predictor. Since our goal is not to miss any possibly relevant predictors, we have opted for using the 50% conservative threshold."
+
+We can change this threshold, however, preliminary testing against the data from the Santander challenge has shown that 50% seems to capture a lot of information! For more information, see https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5485905/. 
+
+# A Note on "Mixing"
+
+Care should be used when setting up the process to use `cVIP`. The algorithm is built the modified bootstrap LASSO, and there are several parameters that control *how* the algorithm explores the conditional distribution of (modified) Variable Inclusion Probability. In particular, 
+
+- `l1_lambda`
+- `column_proportion`
+- `record_proportion`
+
+all have the ability to control how the algorithm explores the *posterior* density over the `n_iterations`-many bootstrap replications. 
+
+General guidelines are to pre-tune for a *good enough* value of  $\lambda$, and choose a value of `column_proportion` that ensures roughly 10-20x coverage. That is to say we want the quantity `n_iterations` $\times$ P $\times$ `record_proportion`  > 20 * N, where N = numer of records. Simulation studies in bootstrapping and MCMC seem to suggest that 20 is a "good" rule of thumb. You may have to explore this more. 
+
+
+
+# Getting Started
+For this vignette, we will look at the data-set for the [Santander Customer Transaction Prediction](https://www.kaggle.com/c/santander-customer-transaction-prediction/data) challenge at Kaggle. 
+
+```{r, include=F, echo=F}
+2+2
+#knitr::opts_knit$set(root.dir = "/Users/jameshorine/Google Drive/kaggle/data_sets/santander-customer-transaction-prediction/")
+```
+
+## Packages
+
+```{r}
+library(fastFeatures)
+library(ggplot2)
+library(dplyr) #for pipe operator
+```
+
+## Load-In
+Point R to the correct directory for the data. It is advised to use `data.table` because it is [much faster](https://h2oai.github.io/db-benchmark/) than other data frame packages in R (and python). 
+
+```{r}
+data("kaggleSample")
+
+#random seed)
+set.seed(4321)
+
+#grab a subset of data
+train_idx <- sample(1:dim(kaggleSample)[1], size = round(x = 0.75 *dim(kaggleSample)[1], digits = 0), replace = F)
+train <- kaggleSample[train_idx,]
+```
+
+
+## Data Information  
+
+```{r}
+dim(train)
+table(train$target)
+object.size(train)
+```
+
+## Setup
+Set up for `fastFeatures` (or any easy to follow data-science problem)
+
+
+```{r}
+#id columns ----
+record_identifier <- "ID_code"
+
+#target ----
+target_variable <- "target"
+
+#optional columns to exclude ---- 
+opt_cols_exclude <- NULL
+
+#features ----
+feature_variables <- names(train)[!names(train)%in% c(target_variable, 
+                                                      record_identifier, 
+                                                      opt_cols_exclude)
+                                  ]
+
+```
+
+
+## using `cVIP` 
+
+#### Useage: 
+```{r}
+
+results <- fastFeatures::cVIP(df = train,
+                                    target_column = target_variable,
+                                    feature_columns = feature_variables,
+                                    column_proportion = 0.25,
+                                    record_proportion = 0.25,
+                                    n_iterations = 500,
+                                    l1_lambda = 0.0099,
+                                   glmnet_family = "binomial")
+
+```
+
+#### Distribution of (modified) Conditional Variable Inclusion Probability: 
+
+```{r}
+ggplot(results, aes(x=`Conditional Variable Inclusion Probability`)) + 
+ geom_histogram(aes(y=..density..), colour="black", fill="white")+
+ geom_density(alpha=.2, fill="#FF6666") + xlab("Conditional Variable Inclusion Probability")
+```
+
+
+#### Proportion of the variables are candidates for further investigation:
+```{r}
+
+dim(results[`Conditional Variable Inclusion Probability` > 0.50])[1]/length(feature_variables)
+
+
+```
+
+
+#### Variables that we may (and shall) investigate: 
+```{r}
+kableExtra::kable(results[`Conditional Variable Inclusion Probability` > 0.50])%>%
+ kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
