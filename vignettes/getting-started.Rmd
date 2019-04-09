@@ -27,7 +27,7 @@ The `fastFeatures` package is designed for high-speed variable selection in a va
 where 
 
   - ||data-set|| = N  
-  - ||P|| = number of predictor columns
+  - ||number of predictor columns|| = P
 
 Examples of these types of data situations are all around us, and bring all sorts of interesting mathematical challenges to the statistician and data scientist. Typical regression problems are of the form N >> P, where $\{P\}$ are said to be independent, so that the matrix inversion $(X^{\prime}X)^{-1}$ is "stable". To make life more interesting, N is often small enough so that the problem neatly fits into available system memory(!!!). 
 
@@ -63,7 +63,11 @@ Care should be used when setting up the process to use `cVIP`. The algorithm is 
 
 all have the ability to control how the algorithm explores the *posterior* density over the `n_iterations`-many bootstrap replications. 
 
-General guidelines are to pre-tune for a *good enough* value of  $\lambda$, and choose a value of `column_proportion` that ensures roughly 10-20x coverage. That is to say we want the quantity `n_iterations` $\times$ P $\times$ `record_proportion`  > 20 * N, where N = numer of records. Simulation studies in bootstrapping and MCMC seem to suggest that 20 is a "good" rule of thumb. You may have to explore this more. 
+General guidelines are to pre-tune for a *good enough* value of  $\lambda$, and choose a value of `column_proportion` that ensures roughly 10-20x coverage. That is to say we want the quantity 
+
+$$ \text{n_iterations} \times \text{record_proportion}  > 20 $$
+
+Simulation studies in bootstrapping and MCMC seem to suggest that 20 is a "good" rule of thumb. You may have to explore this more. 
 
 
 
@@ -147,7 +151,7 @@ results <- fastFeatures::cVIP(df = train,
 
 #### Distribution of (modified) Conditional Variable Inclusion Probability: 
 
-```{r}
+```{r,fig.align='center', fig.width=7, fig.height=4}
 ggplot(results, aes(x=`Conditional Variable Inclusion Probability`)) + 
  geom_histogram(aes(y=..density..), colour="black", fill="white")+
  geom_density(alpha=.2, fill="#FF6666") + xlab("Conditional Variable Inclusion Probability")

@@ -80,7 +80,8 @@ fastFeatures::cVIP(df = train,
     - N-large, p-large
     - p>>N
     - N-large, p-highly correlated
-1. write vignette 
+1. write vignette - DONE 
+1. add vignette content to repo readme. 
 1. unit test (grumble, made last for a reason) 
 
 ## Feedback 
