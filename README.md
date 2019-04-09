@@ -19,24 +19,23 @@ Installation
 
 You can install the released version of fastFeatures from [GitHub](https://github.com/) with:
 
-1.  
+devtools:
 
 ``` r
 install.packages("devtools")
 ```
 
-1.  
-
 ``` r
 devtools::install_github("jameshorine/fastFeatures")
 ```
 
-1.  (turns out I was wrong about (2), and there appears to be a bit of a community kerfuffle between Hadley (AKA The Grand Master), and the folks at `devtools`)
-
-per <https://community.rstudio.com/t/vignettes-suddenly-stopped-installing/18391>, try installing as:
+UPDATE: It turns out I was wrong about installation via devtools, and there appears to be a bit of a community kerfuffle between Hadley (AKA The Grand Master), and the folks at `devtools`...per <https://community.rstudio.com/t/vignettes-suddenly-stopped-installing/18391>, try installing as:
 
 ``` r
-devtools::install_github("jameshorine/fastFeatures", build = TRUE, build_opts = c("--no-resave-data", "--no-manual"),force = T)
+devtools::install_github("jameshorine/fastFeatures", 
+                         build = TRUE, 
+                         build_opts = c("--no-resave-data", "--no-manual"),
+                         force = T)
 ```
 
 you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette.
