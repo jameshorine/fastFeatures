@@ -27,17 +27,13 @@ knitr::opts_chunk$set(
 
 2. `rf_cVIP` (should be) a `ranger`-powered bootstrapped random forest. The same methodology applies with a twist that I have not yet figured out. 
 
-## Installation
+# Installation
 
 You can install the released version of fastFeatures from [GitHub](https://github.com/) with:
 
 devtools:
 ```{r,eval=FALSE}
 install.packages("devtools")
-```
-
-```{r,eval=FALSE}
-devtools::install_github("jameshorine/fastFeatures")
 ```
 
 UPDATE: It turns out I was wrong about installation via devtools, and there appears to be a bit of a community kerfuffle between Hadley (AKA The Grand Master), and the folks at `devtools`...per https://community.rstudio.com/t/vignettes-suddenly-stopped-installing/18391, try installing as: 
@@ -52,7 +48,11 @@ devtools::install_github("jameshorine/fastFeatures",
 you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette. 
 
 
-
+# Vignette
+You may access the package Vignette via
+```{r, eval = F}
+browseVignettes(package = "fastFeatures")
+```
 
 # Useage
 

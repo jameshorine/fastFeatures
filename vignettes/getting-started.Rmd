@@ -63,7 +63,7 @@ Care should be used when setting up the process to use `cVIP`. The algorithm is 
 
 all have the ability to control how the algorithm explores the *posterior* density over the `n_iterations`-many bootstrap replications. 
 
-General guidelines are to pre-tune for a *good enough* value of  $\lambda$, and choose a value of `column_proportion` that ensures roughly 10-20x coverage. That is to say we want the quantity 
+General guidelines are to pre-tune for a *good enough* value of  $\lambda$, and choose a value of `record_proportion` that ensures roughly 10-20x coverage. That is to say we want the quantity 
 
 $$ \text{n_iterations} \times \text{record_proportion}  > 20 $$
 
