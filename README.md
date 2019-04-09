@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `fastFeatures`
+# Background: `fastFeatures`
 
 `fastFeatures` is an `R` package built from the ground up with one goal
 in mind: Quickly slice and dice through feature spaces too large to
@@ -42,7 +42,9 @@ install.packages("devtools")
 devtools::install_github("jameshorine/fastFeatures")
 ```
 
-## Useage
+# Useage
+
+#### General Recipe
 
 The general recipe for using this package is:
 
@@ -53,11 +55,7 @@ The general recipe for using this package is:
 3.  Run your preferred method.
 4.  Interpret results.
 
-## Notes
-
-1.  This is a temporary suggestion of use:
-
-<!-- end list -->
+#### Function Call
 
 ``` r
 fastFeatures::cVIP(df = train,
@@ -70,20 +68,22 @@ fastFeatures::cVIP(df = train,
                    glmnet_family = "binomial")
 ```
 
-2.  This is not built for the windows platform. I am making use of
+# Notes
+
+1.  This is not built for the windows platform. I am making use of
     `pbmcapply::pbmclapply()` because speed is as important as user
     feedback; It is simply nice to see progress indicators for a long
     calculation.
 
-3.  The “mixing” properties of this algorithm have not been explored at
+2.  The “mixing” properties of this algorithm have not been explored at
     this time. Users should use their judgement in parameter settings.
     If you have many predictors, you may not adequately explore the
     (conditional) Variable Inclusion Probability distribution.
 
-4.  Contrary to \[1\], \[2\] (below), `l1_lambda` is NOT optimized at
+3.  Contrary to \[1\], \[2\] (below), `l1_lambda` is NOT optimized at
     every iteration of the algorithm.
 
-## TODO:
+# TODO:
 
 1.  finish `rf_cVIP`
 2.  test against more large data sets of type
@@ -94,11 +94,11 @@ fastFeatures::cVIP(df = train,
 4.  add vignette content to repo readme.
 5.  unit test (grumble, made last for a reason)
 
-## Feedback
+# Feedback
 
 Please direct any feedback to <jamespatrickhorine@gmail.com>\!
 
-## Refernences
+# Refernences
 
 1.  Bach,Francis. (2008) “Bolasso: model consistent Lasso estimation
     through the bootstrap”. URL <https://arxiv.org/abs/0804.1302>
