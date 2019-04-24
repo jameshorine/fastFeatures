@@ -15,7 +15,22 @@ knitr::opts_chunk$set(
 
 # Background: `fastFeatures`
 
-`fastFeatures` is an `R` package built from the ground up with one goal in mind: Quickly slice and dice through feature spaces too large to (quickly) manually examine so that you may (and shall) build a predictive model that is easy to explain and share. `fastFeatures` provides an easy-to-use interface to fast variable selection methods. The implemented feature selection functions are:
+`fastFeatures` is an `R` package built from the ground up with one goal in mind: High-speed variable selection in typical statistical/data science settings so that you may (and shall) build a predictive model that is easy to explain and share. Namely: 
+
+1. Large N
+1. Large P
+1. ||P|| $\sim$ ||N|| 
+
+where 
+
+  - ||data-set|| = N  
+  - ||number of predictor columns|| = P
+
+
+
+
+
+`fastFeatures` provides an easy-to-use interface to fast variable selection methods. The implemented feature selection functions are:
 
 1. `cVIP` is built from the notion of (Conditional) Variable Inclusion Probability as introduced by Bunea et. al [1]. Built on `glmnet` and can accept any regression of the families:
     - `gaussian`
@@ -46,6 +61,8 @@ devtools::install_github("jameshorine/fastFeatures",
 ```
 
 you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette. 
+
+UPDATE: I am working on migrating the content of the vignette to this repo's readme.
 
 
 # Vignette
