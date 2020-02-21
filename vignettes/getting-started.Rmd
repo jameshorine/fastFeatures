@@ -1,5 +1,5 @@
 ---
-title: "Getting Started"
+title: "Getting Started with `fastFeatures`"
 author: "James Patrick Horine"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -22,28 +22,29 @@ The `fastFeatures` package is designed for high-speed variable selection in a va
 
 1. Large N
 1. Large P
-1. ||P|| $\sim$ ||N|| 
+1. ||P|| > > ||N|| 
 
 where 
 
   - ||data-set|| = N  
   - ||number of predictor columns|| = P
 
-Examples of these types of data situations are all around us, and bring all sorts of interesting mathematical challenges to the statistician and data scientist. Typical regression problems are of the form N >> P, where $\{P\}$ are said to be independent, so that the matrix inversion $(X^{\prime}X)^{-1}$ is "stable". To make life more interesting, N is often small enough so that the problem neatly fits into available system memory(!!!). 
+Examples of these types of data situations are all around us, and bring all sorts of interesting mathematical challenges to the statistician and data scientist. Typical regression problems are of the form N >> P, where $\{P\}$ are said to be independent, so that the matrix inversion $(X^{\prime}X)^{-1}$ is "stable". Moreover, N is often small enough so that the problem neatly fits into available system memory(!!!). 
 
 We find that data are rarely so well behaved. `fastFeatures` is one package that helps the analyst/scientist quickly arrive at a reduced model to generate quality "first-pass" analyses. 
 
 # The Algorithm 
 
-The `fastFeatures` package function `cVIP` reproduced a modified version of the Conditional Variable Inclusion Probability as presented in Bunea et. al. (2010). The modified algorithm: 
+The `fastFeatures` package function `cVIP` reproduces a *modified* version of the Conditional Variable Inclusion Probability as presented in [Bunea et. al. (2010)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5485905/). The modified algorithm: 
 
-1. [Global (pre)-Tuning] Preform cross-validation using `glmnet::cv.glmnet` to obtain reasonably "optimal" $\lambda$
+1. [Global (pre)-Tuning] The User preforms cross-validation using `glmnet::cv.glmnet` to obtain reasonably "optimal" $\lambda$
 1. [Bootstrap] 
     * Select random sub-sample of data with replacement
     * Select random columns without replacement
     * Fit LASSO on the random sub-sample of data with selected predictors
 1. [Summarize] Record the frequency with which selected variables are kept in the model conditioned on the provided $\lambda$
 
+This is a subtle distinction from the method in Buena et. al. as they run a cross-validation to determine the mathematically optimal $\lambda$ at each iteration - frankly I am too impatient. 
 
 # Interperting Results 
 
@@ -51,7 +52,7 @@ The authors of the original method suggest:
 
 "If a predictor is selected in more than 50% of the bootstrap samples, we [may] declare it important and investigate its impact further. The bootstrap frequency associated with a certain predictor indicates to what extent the predictor is more likely to be included in the model, rather than be excluded, should we repeat the experiment a large number of times. We refer to this frequency as the variable inclusion probability (VIP). Of course, the threshold of 50% is user specified, we regard this value as a minimum requirement on investigating further a specific predictor. Since our goal is not to miss any possibly relevant predictors, we have opted for using the 50% conservative threshold."
 
-We can change this threshold, however, preliminary testing against the data from the Santander challenge has shown that 50% seems to capture a lot of information! For more information, see https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5485905/. 
+We can change this threshold, however, preliminary testing against the data from the Santander challenge has shown that 50% seems to capture a reasonable amount of information. 
 
 # A Note on "Mixing"
 
@@ -143,7 +144,7 @@ results <- fastFeatures::cVIP(df = train,
                                     feature_columns = feature_variables,
                                     column_proportion = 0.25,
                                     record_proportion = 0.25,
-                                    n_iterations = 500,
+                                    n_iterations = 1000,
                                     l1_lambda = 0.0099,
                                    glmnet_family = "binomial")
 

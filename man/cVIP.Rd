@@ -4,8 +4,16 @@
 \alias{cVIP}
 \title{L1 Lasso Selection From Dense Predictor Space.}
 \usage{
-cVIP(df, target_column, feature_columns, column_proportion,
-  record_proportion = 1, n_iterations, l1_lambda, glmnet_family)
+cVIP(
+  df,
+  target_column,
+  feature_columns,
+  column_proportion,
+  record_proportion = 1,
+  n_iterations,
+  l1_lambda,
+  glmnet_family
+)
 }
 \arguments{
 \item{df}{\code{data.table}-type data matrix}
