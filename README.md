@@ -29,7 +29,7 @@ UPDATE: It turns out I was wrong about installation via devtools, and there appe
 
 ``` r
 devtools::install_github("jameshorine/fastFeatures", 
-                         build = TRUE, 
+                         build_vignettes = TRUE,
                          build_opts = c("--no-resave-data", "--no-manual"),
                          force = T)
 ```
