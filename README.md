@@ -97,7 +97,7 @@ TODO:
 Feedback
 ========
 
-Please direct any feedback to <jamespatrickhorine@gmail.com>!
+Please direct any feedback to the issues section! 
 
 Refernences
 ===========
