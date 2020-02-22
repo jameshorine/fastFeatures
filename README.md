@@ -3,7 +3,19 @@
 Background: `fastFeatures`
 ==========================
 
-`fastFeatures` is an `R` package built from the ground up with one goal in mind: Quickly slice and dice through feature spaces too large to (quickly) manually examine so that you may (and shall) build a predictive model that is easy to explain and share. `fastFeatures` provides an easy-to-use interface to fast variable selection methods. The implemented feature selection functions are:
+`fastFeatures` is an `R` package built from the ground up with one goal in mind: High-speed variable selection in typical statistical/data science settings so that you may (and shall) build a predictive model that is easy to explain and share. Namely:
+
+1.  Large N
+2.  Large P
+3.  ||P|| ∼ ||N||
+4.  ||P|| &gt;&gt; ||N||
+
+where
+
+-   N = number of records in the usual sense
+-   P = the dimensionality of the predictor space
+
+`fastFeatures` provides an easy-to-use interface to fast variable selection methods. The implemented feature selection functions are:
 
 1.  `cVIP` is built from the notion of (Conditional) Variable Inclusion Probability as introduced by Bunea et. al \[1\]. Built on `glmnet` and can accept any regression of the families:
     -   `gaussian`
@@ -34,9 +46,7 @@ devtools::install_github("jameshorine/fastFeatures",
                          force = T)
 ```
 
-you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette.
-
-UPDATE: I am working on migrating the content of the vignette to this repo's readme.
+Note: you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette.
 
 Vignette
 ========
@@ -85,19 +95,20 @@ Notes
 TODO:
 =====
 
-1.  finish `rf_cVIP`
-2.  test against more large data sets of type
+1.  implement random forest equivalent: `rf_cVIP`
+2.  implement "heat map" of variable inclusion as a function of *λ*
+3.  test against more large data sets of type
     -   N-large, p-large
     -   p&gt;&gt;N
     -   N-large, p-highly correlated
-3.  write vignette - DONE
-4.  add vignette content to repo readme.
-5.  unit test (grumble, made last for a reason)
+4.  write vignette - DONE
+5.  add vignette content to repo readme.
+6.  unit test (grumble, made last for a reason)
 
 Feedback
 ========
 
-Please direct any feedback to <jamespatrickhorine@gmail.com>!
+Please direct any feedback to the issues section!
 
 Refernences
 ===========

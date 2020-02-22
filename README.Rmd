@@ -20,11 +20,12 @@ knitr::opts_chunk$set(
 1. Large N
 1. Large P
 1. ||P|| $\sim$ ||N|| 
+1. ||P|| $\gt \gt$ ||N|| 
 
 where 
 
-  - ||data-set|| = N  
-  - ||number of predictor columns|| = P
+  - N = number of records in the usual sense  
+  - P = the dimensionality of the predictor space
 
 
 
@@ -55,14 +56,12 @@ UPDATE: It turns out I was wrong about installation via devtools, and there appe
 
 ```{r, eval=F}
 devtools::install_github("jameshorine/fastFeatures", 
-                         build = TRUE, 
+                         build_vignettes = TRUE,
                          build_opts = c("--no-resave-data", "--no-manual"),
                          force = T)
 ```
 
-you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette. 
-
-UPDATE: I am working on migrating the content of the vignette to this repo's readme.
+Note: you will need to install `knitr`, `kableExtra` to get R to build the markdown vignette. 
 
 
 # Vignette
@@ -105,7 +104,8 @@ fastFeatures::cVIP(df = train,
 
 # TODO: 
 
-1. finish `rf_cVIP`
+1. implement random forest equivalent: `rf_cVIP`
+1. implement "heat map" of variable inclusion as a function of $\lambda$
 1. test against more large data sets of type
     - N-large, p-large
     - p>>N
@@ -116,7 +116,8 @@ fastFeatures::cVIP(df = train,
 
 # Feedback 
 
-Please direct any feedback to jamespatrickhorine@gmail.com! 
+Please direct any feedback to the issues section!
+
 
 
 # Refernences
