@@ -62,8 +62,8 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
 
   temp_results <- pbmcapply::pbmclapply(X = 1:n_iterations,
                                         FUN = function(X){
-                                          random_columns <- sample(x = feature_variables,
-                                                                   size = round(x = column_proportion*length(feature_variables),
+                                          random_columns <- sample(x = feature_columnsiables,
+                                                                   size = round(x = column_proportion*length(feature_columnsiables),
                                                                                 digits = 0),
                                                                    replace = FALSE)
 
