@@ -108,7 +108,11 @@ TODO:
 Feedback
 ========
 
+<<<<<<< HEAD
 Please direct any feedback to the issues section!
+=======
+Please direct any feedback to the issues section! 
+>>>>>>> 5979e7524c8957ed72048f805c5390c3376a3473
 
 Refernences
 ===========

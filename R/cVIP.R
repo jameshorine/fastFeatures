@@ -69,7 +69,7 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
 
                                           if(record_proportion == 1){
                                             temp_mdl <- glmnet::glmnet(x = data.matrix(df[,random_columns, with = F]),
-                                                                       y = data.matrix(df[,target_variable, with = F]),
+                                                                       y = data.matrix(df[,target_column, with = F]),
                                                                        family = glmnet_family,
                                                                        alpha = 1, lambda = l1_lambda,
                                                                        intercept = FALSE)
@@ -80,7 +80,7 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
                                                                       replace = TRUE)
 
                                           temp_mdl <- glmnet::glmnet(x = data.matrix(df[random_rows,random_columns, with = F]),
-                                                                     y = data.matrix(df[random_rows,target_variable, with = F]),
+                                                                     y = data.matrix(df[random_rows,target_column, with = F]),
                                                                      family = glmnet_family,
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)

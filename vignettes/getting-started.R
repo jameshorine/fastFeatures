@@ -52,7 +52,7 @@ results <- fastFeatures::cVIP(df = train,
                                     feature_columns = feature_variables,
                                     column_proportion = 0.25,
                                     record_proportion = 0.25,
-                                    n_iterations = 500,
+                                    n_iterations = 1000,
                                     l1_lambda = 0.0099,
                                    glmnet_family = "binomial")
 
