@@ -74,11 +74,19 @@ The general recipe for using this package is:
 
 #### Function Call
 
-Below is an outline of how to call `cVIP`. The inputs: - `gaussian` - `train` - `target_variable` - `feature_variables` - `n_iterations` - `l1_lambda` - `glmnet_family`
+Below is an outline of how to call `cVIP`. The inputs:
+
+-   `df`
+-   `target_column`
+-   `feature_columns`
+-   `column_proportion`
+-   `n_iterations`
+-   `l1_lambda`
+-   `glmnet_family`
 
 are required user-defined inputs.
 
-The `record_proportion` parameter has a default value fo 5%. This was chosen intentionally because the author (James) desires speed for this application. If you (the user) desire to sample more of the records simply increase the value.
+The `record_proportion` parameter has a default value fo 5%. This was chosen intentionally because the author (James) desires speed for this application. If you (the user) desire to sample more of the records simply increase the value. Keep in mind that doing so will increase the expected algorithm run time.
 
 ``` r
 fastFeatures::cVIP(df = train,
@@ -110,9 +118,8 @@ TODO:
     -   N-large, p-large
     -   p&gt;&gt;N
     -   N-large, p-highly correlated
-5.  write vignette - DONE
-6.  add vignette content to repo readme.
-7.  unit test (grumble, made last for a reason)
+5.  add vignette content to repo readme - eventually
+6.  unit test (grumble, made last for a reason)
 
 Feedback
 ========
