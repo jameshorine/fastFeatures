@@ -9,7 +9,7 @@ cVIP(
   target_column,
   feature_columns,
   column_proportion,
-  record_proportion = 1,
+  record_proportion = 0.05,
   n_iterations,
   l1_lambda,
   glmnet_family

@@ -32,7 +32,7 @@
 #'
 #' @export
 
-cVIP <- function(df, target_column, feature_columns, column_proportion, record_proportion = 1, n_iterations, l1_lambda, glmnet_family){
+cVIP <- function(df, target_column, feature_columns, column_proportion, record_proportion = 0.05, n_iterations, l1_lambda, glmnet_family){
   ####
   defined <- setdiff(ls(), "record_proportion")
   passed <- names(as.list(match.call())[-1])
@@ -52,39 +52,32 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
   if(length(feature_columns) > 1) { }
   else {stop('Input feature_columns should be a character vector-type object. This check only tests "length > 1".')}
 
-  if(record_proportion <= 1 && record_proportion > 0) { }
-  else {stop('Input record_proportion must be a number on the  interval (0,1]. Default is 1 (no record bootstrapping).')}
   ####
 
   num_cores <- parallel::detectCores()
 
   set.seed(seed = 1234, kind = "Mersenne-Twister")
 
+  MN <- dim(df)
+
   temp_results <- pbmcapply::pbmclapply(X = 1:n_iterations,
                                         FUN = function(X){
-                                          random_columns <- sample(x = feature_columnsiables,
-                                                                   size = round(x = column_proportion*length(feature_columnsiables),
+                                          random_columns <- sample(x = feature_columns,
+                                                                   size = round(x = column_proportion*length(feature_columns),
                                                                                 digits = 0),
                                                                    replace = FALSE)
 
-                                          if(record_proportion == 1){
-                                            temp_mdl <- glmnet::glmnet(x = data.matrix(df[,random_columns, with = F]),
-                                                                       y = data.matrix(df[,target_column, with = F]),
-                                                                       family = glmnet_family,
-                                                                       alpha = 1, lambda = l1_lambda,
-                                                                       intercept = FALSE)
-                                          }
-                                          else {random_rows <- sample(x = 1:dim(df)[1],
-                                                                      size = round(x = dim(df)[1]*record_proportion,
-                                                                                   digits = 0),
-                                                                      replace = TRUE)
+                                          random_rows   <- sample(x = 1:MN[1],
+                                                                  size = round(x = MN[1]*record_proportion,
+                                                                               digits = 0),
+                                                                  replace = TRUE)
 
                                           temp_mdl <- glmnet::glmnet(x = data.matrix(df[random_rows,random_columns, with = F]),
                                                                      y = data.matrix(df[random_rows,target_column, with = F]),
                                                                      family = glmnet_family,
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)
-                                          }
+
                                           return(data.table::data.table(as.data.frame(as.matrix(coef(temp_mdl))), keep.rownames = TRUE))
                                         },
                                         mc.cores = num_cores
