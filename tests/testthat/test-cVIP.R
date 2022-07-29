@@ -1,7 +1,6 @@
 test_that("main function works", {
 
   test_data <- as.data.table(fastFeatures:::test_data_1)
-  print(test_data)
 
   results <- fastFeatures::cVIP(
     df = test_data,

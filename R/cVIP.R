@@ -62,18 +62,25 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
 
   temp_results <- pbmcapply::pbmclapply(X = 1:n_iterations,
                                         FUN = function(X){
-                                          random_columns <- sample(x = feature_columns,
-                                                                   size = round(x = column_proportion*length(feature_columns),
-                                                                                digits = 0),
-                                                                   replace = FALSE)
 
-                                          random_rows   <- sample(x = 1:MN[1],
-                                                                  size = round(x = MN[1]*record_proportion,
-                                                                               digits = 0),
-                                                                  replace = TRUE)
+                                          sample_idx <- sample_indices(
+                                            feature_columns = feature_columns,
+                                            nrows_ = MN[1],
+                                            column_proportion = column_proportion,
+                                            record_proportion = record_proportion
+                                          )
+                                          # random_columns <- sample(x = feature_columns,
+                                          #                          size = round(x = column_proportion*length(feature_columns),
+                                          #                                       digits = 0),
+                                          #                          replace = FALSE)
 
-                                          temp_mdl <- glmnet::glmnet(x = data.matrix(df[random_rows,random_columns, with = F]),
-                                                                     y = data.matrix(df[random_rows,target_column, with = F]),
+                                          # random_rows   <- sample(x = 1:MN[1],
+                                          #                         size = round(x = MN[1]*record_proportion,
+                                          #                                      digits = 0),
+                                          #                         replace = TRUE)
+
+                                          temp_mdl <- glmnet::glmnet(x = data.matrix(df[sample_idx$random_rows,sample_idx$random_columns, with = F]),
+                                                                     y = data.matrix(df[sample_idx$random_rows,target_column, with = F]),
                                                                      family = glmnet_family,
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)
