@@ -8,8 +8,17 @@ Description: R Package for Fast Feature Selection - (i.e. For When You Have To E
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Depends: data.table, pbmcapply, glmnet, parallel
+Depends: 
+    data.table,
+    pbmcapply,
+    glmnet,
+    parallel,
+    R (>= 2.10)
 Imports: glmnet
 RoxygenNote: 7.0.2
-Suggests: knitr, rmarkdown
+Suggests: 
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr
+Config/testthat/edition: 3
