@@ -38,8 +38,6 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
 
   num_cores <- parallel::detectCores()
 
-  MN <- dim(df)
-
   temp_results <- lapply(X = 1:n_iterations,
                                         FUN = function(X){
 
