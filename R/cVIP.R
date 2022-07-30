@@ -52,9 +52,6 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
                                         }
   )
 
-  res <- data.table:::merge.data.table(x = data.table::rbindlist(temp_results)[, list(count = .N), by = rn],
-                                       y = data.table::rbindlist(temp_results)[s0 > 0, list(countInc = .N), by = rn],
-                                       by = "rn")[ , list("Variable" = rn, "Conditional Variable Inclusion Probability" = countInc / count)]
-
+  res <- compute_results(lapply(temp_results, data.frame))
   return(res)
 }
