@@ -60,25 +60,18 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
 
   MN <- dim(df)
 
-  temp_results <- pbmcapply::pbmclapply(X = 1:n_iterations,
+  temp_results <- lapply(X = 1:n_iterations,
                                         FUN = function(X){
 
-                                          sample_idx <- sample_indices(
-                                            feature_columns = feature_columns,
-                                            nrows_ = MN[1],
-                                            column_proportion = column_proportion,
-                                            record_proportion = record_proportion
-                                          )
-
-                                          temp_mdl <- glmnet::glmnet(x = data.matrix(df[sample_idx$random_rows,sample_idx$random_columns, with = F]),
-                                                                     y = data.matrix(df[sample_idx$random_rows,target_column, with = F]),
+                                          samp_mtrx <- sample_matrix(df, target_column, feature_columns, column_proportion, record_proportion)
+                                          temp_mdl <- glmnet::glmnet(x = samp_mtrx$x,
+                                                                     y = samp_mtrx$y,
                                                                      family = glmnet_family,
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)
 
                                           return(data.table::data.table(as.data.frame(as.matrix(coef(temp_mdl))), keep.rownames = TRUE))
-                                        },
-                                        mc.cores = num_cores
+                                        }
   )
 
   res <- data.table:::merge.data.table(x = data.table::rbindlist(temp_results)[, list(count = .N), by = rn],
