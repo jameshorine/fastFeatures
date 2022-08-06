@@ -1,6 +1,6 @@
 test_that("main function works", {
 
-  test_data <- as.data.table(fastFeatures:::test_data_1)
+  test_data <- fastFeatures:::test_data_1
   set.seed(1234)
   results <- fastFeatures::cVIP(
     df = test_data,

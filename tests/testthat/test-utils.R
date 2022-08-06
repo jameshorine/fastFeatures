@@ -17,12 +17,12 @@ test_that("sample matrix works", {
   x <- rep(rnorm(100), 4)
   dim(x) <- c(100, 4)
 
-  samp <- sample_matrix(as.data.table(x), 1, c(2,3,4), 0.66, 1)
+  samp <- sample_matrix(x, 1, c(2,3,4), 0.66, 1)
   
   expect_length(samp, 2)
   expect_named(samp, c("x", "y"))
   expect_equal(dim(samp$x), c(100,2))
-  expect_equal(dim(samp$y), c(100,1))
+  expect_length(samp$y, 100)
 
 
 })

@@ -24,8 +24,8 @@ sample_matrix <- function(df, target_column, feature_columns, column_proportion,
     )
 
     output <- list(
-        x=data.matrix(df[sample_idx$random_rows, sample_idx$random_columns, with=FALSE]),
-        y=data.matrix(df[sample_idx$random_rows, target_column, with=FALSE])
+        x=df[sample_idx$random_rows, sample_idx$random_columns],
+        y=df[sample_idx$random_rows, target_column]
     )
     return(output)
 }
