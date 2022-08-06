@@ -48,10 +48,10 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)
 
-                                          return(data.table::data.table(as.data.frame(as.matrix(coef(temp_mdl))), keep.rownames = TRUE))
+                                          return(coef(temp_mdl))
                                         }
   )
 
-  res <- compute_results(lapply(temp_results, data.frame))
+  res <- compute_results(temp_results)
   return(res)
 }

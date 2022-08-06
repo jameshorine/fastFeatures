@@ -33,8 +33,8 @@ sample_matrix <- function(df, target_column, feature_columns, column_proportion,
 
 compute_results <- function(results) {
     results <- do.call(rbind, results)
-    results[,2] <- ifelse(results[,2] > 0, 1, 0)
-    results <- aggregate(results[,2], by=list(results[,1]), FUN=mean)
+    results[,1] <- ifelse(results[,1] > 0, 1, 0)
+    results <- aggregate(results[,1], by=list(rownames(results)), FUN=mean)
     colnames(results) <- c("Variable", "Conditional Variable Inclusion Probability")
     return(results)
 }
