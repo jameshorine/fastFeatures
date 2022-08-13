@@ -21,5 +21,5 @@ test_data_1 <- create_test_data(1234)
 usethis::use_data(test_data_1, overwrite = TRUE, internal=TRUE)
 
 
-kaggle_sample <- read.csv("kaggleSample.csv")
-usethis::use_data(kaggle_sample, overwrite=FALSE, internal=FALSE)
+kaggleSample <- read.csv("kaggleSample.csv")
+usethis::use_data(kaggleSample, overwrite=FALSE, internal=FALSE)
