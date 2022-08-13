@@ -75,17 +75,12 @@ Simulation studies in bootstrapping and MCMC seem to suggest that 20 is a "good"
 # Getting Started
 For this vignette, we will look at the data-set for the [Santander Customer Transaction Prediction](https://www.kaggle.com/c/santander-customer-transaction-prediction/data) challenge at Kaggle. 
 
-```{r, include=F, echo=F}
-2+2
-#knitr::opts_knit$set(root.dir = "/Users/jameshorine/Google Drive/kaggle/data_sets/santander-customer-transaction-prediction/")
-```
 
 ## Packages
 
 ```{r}
 library(fastFeatures)
 library(ggplot2)
-library(dplyr) #for pipe operator
 ```
 
 ## Load-In
@@ -144,7 +139,7 @@ results <- fastFeatures::cVIP(df = train,
                                     feature_columns = feature_variables,
                                     column_proportion = 0.25,
                                     record_proportion = 0.25,
-                                    n_iterations = 1000,
+                                    n_iterations = 10,
                                     l1_lambda = 0.0099,
                                    glmnet_family = "binomial")
 
@@ -152,26 +147,26 @@ results <- fastFeatures::cVIP(df = train,
 
 #### Distribution of (modified) Conditional Variable Inclusion Probability: 
 
-```{r,fig.align='center', fig.width=7, fig.height=4}
+```{r,fig.align='center', fig.width=7, fig.height=4, message=FALSE}
 ggplot(results, aes(x=`Conditional Variable Inclusion Probability`)) + 
- geom_histogram(aes(y=..density..), colour="black", fill="white")+
+ geom_histogram(aes(y=..density..), colour="black", fill="white", binwidth=0.02)+
  geom_density(alpha=.2, fill="#FF6666") + xlab("Conditional Variable Inclusion Probability")
 ```
 
 
 #### Proportion of the variables are candidates for further investigation:
 ```{r}
+thresh <- 0.5
+included_vars_index <- ifelse(results[["Conditional Variable Inclusion Probability"]] > thresh, T, F)
 
-dim(results[`Conditional Variable Inclusion Probability` > 0.50])[1]/length(feature_variables)
-
-
+print(sum(included_vars_index) / length(feature_variables))
 ```
 
 
 #### Variables that we may (and shall) investigate: 
 ```{r}
-kableExtra::kable(results[`Conditional Variable Inclusion Probability` > 0.50])%>%
- kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+subset(results,subset=included_vars_index, select="Conditional Variable Inclusion Probability") %>%
+  knitr::kable(caption="Included Variables", digits=2)
 ```
 
 
