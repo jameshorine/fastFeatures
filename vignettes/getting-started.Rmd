@@ -81,6 +81,7 @@ For this vignette, we will look at the data-set for the [Santander Customer Tran
 ```{r}
 library(fastFeatures)
 library(ggplot2)
+library(magrittr)
 ```
 
 ## Load-In
