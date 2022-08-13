@@ -48,13 +48,10 @@ cVIP <- function(df, target_column, feature_columns, column_proportion, record_p
                                                                      alpha = 1, lambda = l1_lambda,
                                                                      intercept = FALSE)
 
-                                          return(data.table::data.table(as.data.frame(as.matrix(coef(temp_mdl))), keep.rownames = TRUE))
+                                          return(coef(temp_mdl))
                                         }
   )
 
-  res <- data.table:::merge.data.table(x = data.table::rbindlist(temp_results)[, list(count = .N), by = rn],
-                                       y = data.table::rbindlist(temp_results)[s0 > 0, list(countInc = .N), by = rn],
-                                       by = "rn")[ , list("Variable" = rn, "Conditional Variable Inclusion Probability" = countInc / count)]
-
+  res <- compute_results(temp_results)
   return(res)
 }

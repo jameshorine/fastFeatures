@@ -9,7 +9,6 @@ License: MIT
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    data.table,
     pbmcapply,
     glmnet,
     parallel,
@@ -19,6 +18,8 @@ RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2,
+    magrittr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

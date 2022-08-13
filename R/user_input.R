@@ -1,7 +1,5 @@
 
 validate_user_input <- function(df, target_column, feature_columns) {
-  if(data.table::is.data.table(df)) { }
-  else {stop('Input df must be a data.table::data.table() type object.')}
 
   if(is.character(target_column)) { }
   else {stop('Input target_column must be a base::character() type object.')}

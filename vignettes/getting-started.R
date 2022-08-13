@@ -1,19 +1,14 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- include=F, echo=F--------------------------------------------------
-2+2
-#knitr::opts_knit$set(root.dir = "/Users/jameshorine/Google Drive/kaggle/data_sets/santander-customer-transaction-prediction/")
-
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(fastFeatures)
 library(ggplot2)
-library(dplyr) #for pipe operator
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 data("kaggleSample")
 
 #random seed)
@@ -23,12 +18,12 @@ set.seed(4321)
 train_idx <- sample(1:dim(kaggleSample)[1], size = round(x = 0.75 *dim(kaggleSample)[1], digits = 0), replace = F)
 train <- kaggleSample[train_idx,]
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dim(train)
 table(train$target)
 object.size(train)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 #id columns ----
 record_identifier <- "ID_code"
 
@@ -45,30 +40,26 @@ feature_variables <- names(train)[!names(train)%in% c(target_variable,
                                   ]
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 results <- fastFeatures::cVIP(df = train,
                                     target_column = target_variable,
                                     feature_columns = feature_variables,
                                     column_proportion = 0.25,
                                     record_proportion = 0.25,
-                                    n_iterations = 1000,
+                                    n_iterations = 10,
                                     l1_lambda = 0.0099,
                                    glmnet_family = "binomial")
 
 
-## ----fig.align='center', fig.width=7, fig.height=4-----------------------
+## ----fig.align='center', fig.width=7, fig.height=4, message=FALSE-------------
 ggplot(results, aes(x=`Conditional Variable Inclusion Probability`)) + 
- geom_histogram(aes(y=..density..), colour="black", fill="white")+
+ geom_histogram(aes(y=..density..), colour="black", fill="white", binwidth=0.02)+
  geom_density(alpha=.2, fill="#FF6666") + xlab("Conditional Variable Inclusion Probability")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
+thresh <- 0.5
+included_vars_index <- ifelse(results[["Conditional Variable Inclusion Probability"]] > thresh, T, F)
 
-dim(results[`Conditional Variable Inclusion Probability` > 0.50])[1]/length(feature_variables)
-
-
-
-## ------------------------------------------------------------------------
-kableExtra::kable(results[`Conditional Variable Inclusion Probability` > 0.50])%>%
- kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+print(sum(included_vars_index) / length(feature_variables))
 
